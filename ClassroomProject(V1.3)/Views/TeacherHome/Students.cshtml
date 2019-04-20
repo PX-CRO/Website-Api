@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Student>
+@{
+    /**/
+
+    ViewBag.Title = "Students";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8 ">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">ÖĞRENCİ LİSTESİ</h1>
+            <p class="lead">Bu ekrandan öğrenci detaylarını görüntüleyip, silme,ekleme ve güncelleme işlemlerini gerçekleştirebilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            @using (Html.BeginForm("Students", "TeacherHome", FormMethod.Get))
+            {
+                <div class="input-group" style="float:right">
+                    @Html.TextBox("searching", null, htmlAttributes: new { @class = "form-control", @placeholder = "Aramak istediğin...", @style = "float:right" })
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-search btn-info" type="submit"><i class="fa fa-search fa-fw"></i> Search</button>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tr>
+                        <th><p>FOTOĞRAF</p></th>
+                        <th><p>Alan</p></th>
+                        <th><p>AD</p></th>
+                        <th><p>SOYAD</p></th>
+                        <th><p>ÖĞRENCİ TELEFON</p></th>
+                        <th><p>CİNSİYET</p></th>
+                        <th><p>DURUM</p></th>
+                        <th><p>VELİ AD</p></th>
+                        <th><p>VELİ TELEFON</p></th>
+                        <th><p>SINIF</p></th>
+                        <th><p>GRUP</p></th>
+                        <th></th>
+                    </tr>
+
+                    <tbody>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="3" style="color:red;">
+                                    Eşleşme Bulunamadı.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content(item.Photo)" class="rounded-circle" alt="Image" height="50" width="50" />
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+
+                                <td>
+                                    @if (item.Gender == true)
+                                    {
+                                        <p>Bay</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Bayan</p>
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (item.Status == true)
+                                    {
+                                        <p>Aktif</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Pasif</p>
+                                    }
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ParentName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ParentPhone1)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Class.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Group.Name)
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+

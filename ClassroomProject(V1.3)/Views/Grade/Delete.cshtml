@@ -1,0 +1,78 @@
+﻿@model ClassroomProject_V1._3_.Models.Grade
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">NOT SİLME SAYFASI</h1>
+            <p class="lead text-white">Bu ekrandan girilmiş notu silebilirsiniz.</p>
+        </div>
+    </div>
+    @Html.ActionLink("   Notlar Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-address-card-o">&nbsp;&nbsp;Öğrenci Bilgileri</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Student.FName)
+                    @Html.DisplayFor(model => model.Student.LName)
+                    | @Html.DisplayFor(model => model.Student.TCno)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-th-large">&nbsp;&nbsp;Sınav Adı</i></span>
+                </dt>
+
+                <dd style="font-size:medium; font-weight:600;">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-tasks">&nbsp;&nbsp;Puan</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Mark)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-sort-amount-asc">&nbsp;&nbsp;Derece</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Ranking)
+                </dd>
+
+            </dl>
+
+        </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <h3>Bunu notu silmek istediğine emin misin?</h3>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash-o">&nbsp; &nbsp; SİL</i>
+                    </button>
+                </div>
+            </div>
+            <hr />
+        }
+
+    </div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Grade>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">ÖĞRENCİ NOTLAR LİSTESİ</h1>
+            <p class="lead">Bu ekrandan öğrenci natlarını görüntüleye bilirsiniz.</p>
+            <p class="lead">@Html.Label(Session["UserInf"].ToString())</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tr>
+                        <th style="width:60%"><p>SINAV ADI</p></th>
+                        <th style="width:20%"><p>PUAN</p></th>
+                        <th style="width:20%"><p>DERECESİ</p></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ranking)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Teacher>
+@{
+    ViewBag.Title = "Teacher";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">ÖĞRETMENLER LİSTESİ</h1>
+                <p class="lead">Bu ekrandan Eğitim Merkezinin öğretmenlerini görüntüleye bilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tr>
+                        <th style="width:25%;"><p>Resim</p></th>
+                        <th style="width:35%;"><p>DERS</p></th>
+                        <th style="width:15%;"><p>AD</p></th>
+                        <th style="width:15%;"><p>SOYAD</p></th>
+                        <th style="width:10%;"><p>CİNSİYET</p></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(item.Photo)" class="img-circle" alt="Image" height="100" width="100" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lesson.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LName)
+                            </td>
+                            <td>
+                                @if (item.Gender == false)
+                                {
+                                    <p>Bayan</p>
+                                }
+                                else if (item.Gender == true)
+                                {
+                                    <p>Bay</p>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

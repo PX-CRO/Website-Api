@@ -1,0 +1,86 @@
+﻿@model ClassroomProject_V1._3_.Models.Discontinuity
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#normalDropDown").chosen();
+        });
+    </script>
+}
+
+
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">DEVAMSIZLIK EKLEME SAYFASI</h1>
+            <p class="lead text-white">Bu ekrandan devamsızlık eklebilirsiniz.</p>
+        </div>
+    </div>
+    @Html.ActionLink("  Devamsızlık Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+
+    <hr />
+    <br />
+
+    @using (Html.BeginForm("Create", "Discontinuity", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap text-red"></i></span>
+                    <label>ÖĞRENCİ</label>
+                    <div class="input-group">
+                        @Html.DropDownList("Student_Id", null, htmlAttributes: new { @class = "form-control", id = "normalDropDown" })
+                    </div>
+                    <small class="form-text text-muted">Yapılacak ödeme için bir öğrenci seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Student_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="form-group ">
+                    <span class="input-group-addon"><i class="fa fa-calendar-o text-green"></i></span>
+                    <label>Tarih</label>
+                    <div class="input-group input-group-alternative">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrencinin devamsızlık yaptığı günü giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-pink"></i></span>
+                    <label>Açıklama</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Öğrencinin devamsızlık yaptığı gün hakkında açıklama yapınız.</small>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-prepend">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-plus-square-o">&nbsp;&nbsp; Yeni Kayıt Ekle</i>
+                </button>
+            </div>
+        </div>
+        <hr />
+    }
+
+
+</div>
+

@@ -1,0 +1,37 @@
+﻿@model ClassroomProject_V1._3_.Models.ClassDTO
+@{
+    ViewBag.Title = "Classes";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">SINIFLAR LİSTESİ</h1>
+            <p class="lead text-white">Bu ekrandan Snıfıların detaylarını görüntüleyebilirsiniz.</p>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-hover table-striped table-responsive">
+                <tr style="font-weight:900;">
+                    <td>Sınıf Adı</td>
+                    <td>Açıklama</td>
+                    <td></td>
+                </tr>
+                @foreach (var item in Model.ClassList)
+                {
+                    <tr>
+                        <td style="width: 15%">@item.Name</td>
+                        <td style="width: 55%">@item.Description</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+

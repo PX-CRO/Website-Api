@@ -1,0 +1,203 @@
+﻿@model ClassroomProject_V1._3_.Models.Teacher
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">ÖĞRETMENLER DETAYLARI VE  SİLME PENCERESİ</h1>
+            <p class="lead">Bu ekrandan öğretmenlerin detaylarını görüntüleyip ve silme işlemlerini gerçekleştirebilirsiniz.</p>
+        </div>
+    </div>
+
+
+
+    @Html.ActionLink("   Öğretmen Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col">
+            <br />
+            <br />
+            <br />
+
+            <dl class="">
+                <dd>
+                    <img src="@Url.Content(Model.Photo)" class="rounded-circle" alt="Image" height="300" width="300" />
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col" style="font-weight:600;">
+            <dl class="d-lg-table">
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-font">&nbsp;&nbsp;AD</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.FName)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-strikethrough">&nbsp;&nbsp;SOYAD </i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.LName)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-id-card-o">&nbsp;&nbsp;TC NO</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.TCno)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-intersex">&nbsp;&nbsp;CİNSİYET</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+
+                    @if (Model.Gender == true)
+                    {
+                        <text>Bay</text>
+                    }
+                    else
+                    {
+                        <text>Bayan</text>
+                    }
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-calendar">&nbsp;&nbsp;DOĞUM TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Birthday)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-phone">&nbsp;&nbsp;TELEFON 1</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Phone1)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-phone">&nbsp;&nbsp;TELEFON 2</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Phone2)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-toggle-on">&nbsp;&nbsp;DURUM</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @if (Model.Status == true)
+                    {
+                        <text>Aktif</text>
+                    }
+                    else
+                    {
+                        <text>Pasif</text>
+                    }
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col" style="font-weight:600;">
+            <dl class="d-lg-table">
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-indent">&nbsp;&nbsp;Gireceği Ders</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Lesson.Name)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-envelope">&nbsp;&nbsp;E-POSTA</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.eMail)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-key">&nbsp;&nbsp;ŞİFRE</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Password)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-check-circle-o">&nbsp;&nbsp;KATILMA TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.DateOfJoin)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-circle-o">&nbsp;&nbsp;AYRILMA TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.DateOfLeave)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-map-marker">&nbsp;&nbsp;ADRES</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify">&nbsp;&nbsp;AÇIKLAMA</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+        </div>
+
+    </div>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col">
+                <h3>Bunu öğretmeni silmek istediğine emin misin?</h3>
+            </div>
+            <div class="col">
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash-o">&nbsp; &nbsp; SİL</i>
+                </button>
+
+            </div>
+        </div>
+    }
+    <hr />
+
+</div>

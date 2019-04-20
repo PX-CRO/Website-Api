@@ -1,0 +1,122 @@
+﻿@model ClassroomProject_V1._3_.Models.Discontinuity
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/flick/jquery-ui.css" rel="stylesheet" />
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Date").datepicker();
+
+            $.datepicker.setDefaults(
+                $.extend(
+                    { 'dateFormat': 'dd-mm-yy' },
+
+                )
+            );
+            $.datepicker.regional['tr'] = {
+                closeText: 'kapat',
+                prevText: '&#x3C;geri',
+                nextText: 'ileri&#x3e',
+                currentText: 'bugün',
+                monthNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+                    'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+                monthNamesShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+                    'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                dayNamesShort: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                weekHeader: 'Hf',
+                dateFormat: 'dd.mm.yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['tr']);
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#normalDropDown").chosen();
+        });
+    </script>
+}
+
+
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">DEVAMSIZLIK DÜZENLEME SAYFASI</h1>
+            <p class="lead">Bu ekrandan devamsızlıkları düzenleyebilirsinz.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="btn btn-light">
+            @Html.ActionLink("  Devamsızlık Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        @using (Html.BeginForm("Edit", "Discontinuity", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>ÖĞRENCİ</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                        @Html.DropDownList("Student_Id", null, htmlAttributes: new { @class = "form-control", id = "normalDropDown" })
+                    </div>
+                    <small class="form-text text-muted">Yapılacak ödeme için bir öğrenci seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Student_Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tarih</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrencinin devamsızlık yaptığı günü giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-align-justify"></i></span>
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Öğrencinin devamsızlık yaptığı gün hakkında açıklama yapınız.</small>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success ">
+                        <i class="fa fa-floppy-o">&nbsp; &nbsp;Değişiklikleri Kaydet</i>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

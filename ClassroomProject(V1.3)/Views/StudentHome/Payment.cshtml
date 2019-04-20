@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Payment>
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">ÖĞRENCİ ÖDEMELERİ LİSTESİ</h1>
+            <p class="lead">Bu ekrandan öğrenci ödemelerini görüntülee bilirsiniz.</p>
+            <p class="lead">@Html.Label(Session["UserInf"].ToString())</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tr>
+                        <th style="width:50%"><p>ÖDEYEN KİŞİ</p></th>
+                        <th style="width:30%"><p>TARİH</p></th>
+                        <th style="width:20%"><p>TUTAR (TL)</p></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayerNameSurname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

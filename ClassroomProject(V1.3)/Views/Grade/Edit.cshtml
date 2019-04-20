@@ -1,0 +1,94 @@
+﻿@model ClassroomProject_V1._3_.Models.Grade
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">NOT DÜZENLEME SAYFASI</h1>
+            <p class="lead text-white">Bu ekrandan girilmiş notları düzenleyebilirsiniz.</p>
+        </div>
+    </div>
+    <hr />
+            @Html.ActionLink("  Notlar Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+
+    <br />
+    <br />
+
+    @using (Html.BeginForm("Edit", "Grade", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <span class="input-group-addon"><i class="fa fa-graduation-cap text-pink"></i></span>
+                <label>ÖĞRENCİ</label>
+                <div class="input-group">
+                    @Html.DropDownList("Student_Id", null, htmlAttributes: new { @class = "form-control", id = "normalDropDown" })
+                </div>
+                <small class="form-text text-muted">Yapılacak ödeme için bir öğrenci seçiniz</small>
+                @Html.ValidationMessageFor(model => model.Student_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <span class="input-group-addon"><i class="fa fa-th-large text-green"></i></span>
+                <label>Sınav Ad</label>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <small class="form-text text-muted">Sınav Adını ve Tarihini Giriniz. Ör: YKS Değerlendirme Sınavı 20.01.2019</small>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+
+                <span class="input-group-addon"><i class="fa fa-tasks text-red"></i></span>
+                <label>Puan</label>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <small class="form-text text-muted">Öğrencinin sınavdan aldığı puanı giriniz.</small>
+                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <span class="input-group-addon"><i class="fa fa-sort-amount-asc text-blue"></i></span>
+                <label>Derece</label>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Ranking, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <small class="form-text text-muted">Öğrencinin Eğitim merkezindeki sıralamasını giriniz.</small>
+                @Html.ValidationMessageFor(model => model.Ranking, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success ">
+                    <i class="fa fa-floppy-o">&nbsp; &nbsp;Değişiklikleri Kaydet</i>
+                </button>
+            </div>
+        </div>
+    </div>
+            }
+        
+
+    </div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#normalDropDown").chosen();
+        });
+    </script>
+}

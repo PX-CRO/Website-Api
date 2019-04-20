@@ -1,0 +1,120 @@
+﻿@model ClassroomProject_V1._3_.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">SORU SİLME SAYFASI</h1>
+            <p class="lead text-white">Bu ekrandan soru Görüntüleyebilir veya silebilirsiniz.</p>
+        </div>
+    </div>
+    <hr />
+    @Html.ActionLink("   Soru Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+    <br />
+    <br />
+    <div class="row">
+        <div col-md-2></div>
+        <div class="col-md-6">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-question-circle text-green">&nbsp;&nbsp;Soru</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Question1)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-red">&nbsp;&nbsp;A</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.A)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-red">&nbsp;&nbsp;B</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.B)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-red">&nbsp;&nbsp;C</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.C)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-red">&nbsp;&nbsp;D</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.D)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-red">&nbsp;&nbsp;E</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.E)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify text-green">&nbsp;&nbsp;Cevap</i></span>
+                </dt>
+
+                <dd style="font-size:medium; font-weight:600;">
+                    @Html.DisplayFor(model => model.Answer)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-tasks text-red">&nbsp;&nbsp;Çözüm</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Solution)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-navicon text-blue">&nbsp;&nbsp;Ders</i></span>
+                </dt>
+
+                <dd style="font-size:medium;font-weight:600;">
+                    @Html.DisplayFor(model => model.Lesson.Name)
+                    TL
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col">
+                <h3>Bunu soruyu silmek istediğine emin misin?</h3>
+            </div>
+            <div class="col">
+                <div style="float:left;">
+
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash-o">&nbsp; &nbsp; SİL</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+</div>

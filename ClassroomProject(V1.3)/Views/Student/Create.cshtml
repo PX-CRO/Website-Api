@@ -1,0 +1,312 @@
+﻿@model ClassroomProject_V1._3_.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/flick/jquery-ui.css" rel="stylesheet" />
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#DateOfJoin").datepicker();
+            $("#Birthday").datepicker();
+            $("#DateOfLeave").datepicker();
+            $.datepicker.setDefaults(
+                $.extend(
+                    { 'dateFormat': 'dd-mm-yy' },
+                )
+            );
+            $.datepicker.regional['tr'] = {
+                closeText: 'kapat',
+                prevText: '&#x3C;geri',
+                nextText: 'ileri&#x3e',
+                currentText: 'bugün',
+                monthNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+                    'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+                monthNamesShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+                    'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                dayNamesShort: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                weekHeader: 'Hf',
+                dateFormat: 'dd.mm.yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['tr']);
+        });
+    </script>
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8 ">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">ÖĞRENCİ EKLEME SAYFASI</h1>
+            <p class="lead">Bu ekrandan öğrenci eklebilirsiniz.</p>
+        </div>
+    </div>
+    <div class="row">
+            @Html.ActionLink("  Öğrenci Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+    </div>
+    @using (Html.BeginForm("Create", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.AntiForgeryToken()
+        <hr />
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-graduation-cap text-blue"></i></span>
+                    <label>ALAN</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Alanını Giriniz. Örneğin; Sayısal, Sözel</small>
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-users text-yellow"></i></span>
+                    <label>SINIF</label>
+                    <div class="input-group">
+                        @Html.DropDownList("Class_Id", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Sınıfını Seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Class_Id, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-indent text-purple"></i></span>
+                    <label>GRUP</label>
+                    <div class="input-group">
+                        @Html.DropDownList("Group_Id", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci hazırlandığı sınav türünü seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Group_Id, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-id-card-o text-green"></i></span>
+                    <label>TC NUMARASI</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.TCno, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci TC Kimlik numarası giriniz</small>
+                    @Html.ValidationMessageFor(model => model.TCno, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-font text-cyan"></i></span>
+                    <label>AD</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Ad</small>
+                    @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-strikethrough text-pink"></i></span>
+                    <label>SOYAD</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.LName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Soyadı Giriniz</small>
+                    @Html.ValidationMessageFor(model => model.LName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-intersex text-red"></i></span>
+                    <label>CİNSİYET</label>
+                    <div class="input-group">
+                        <table>
+                            <tr>
+                                <td>@Html.RadioButtonFor(model => model.Gender, true) <strong>Bay</strong></td>
+                                <td> &nbsp; &nbsp;&nbsp; </td>
+                                <td>@Html.RadioButtonFor(model => model.Gender, false) <strong>Bayan</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Cinsiyeti seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar text-yellow"></i></span>
+                    <label>DOĞUM TARİHİ</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Doğum Tarihi</small>
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-phone text-green"></i></span>
+                    <label>ÖĞRENCİ TELEFON</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Mobil telefon numarası giriniz. Ör: 05xx xxx xxxx</small>
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-toggle-on text-purple"></i></span>
+                    <label>DURUM</label>
+                    <div class="input-group">
+                        <table>
+                            <tr>
+                                <td>@Html.RadioButtonFor(model => model.Status, true) <strong>Aktif</strong></td>
+                                <td> &nbsp; &nbsp;&nbsp; </td>
+                                <td>@Html.RadioButtonFor(model => model.Status, false) <strong>Pasif</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Durumunu seçiniz</small>
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-picture-o text-red"></i></span>
+                    <label>FOTOĞRAF</label>
+                    <div class="input-group">
+                        <input type="file" name="ImageFile" required />
+                    </div>
+                    <small class="form-text text-muted">Öğrenci fotoğrafı seçiniz. 1 MB küçük |.png|.jpg|.jpeg uzantılı dosyayı seçiniz.</small>
+
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-5">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope text-muted"></i></span>
+                    <label>E-POSTA</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Sisteme giriş yapabilmesi için bir E-Posta adresi giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-key text-pink"></i></span>
+                    <label>ŞİFRE</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Sisteme giriş yapabilmesi için bir şifre giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-check-circle-o text-yellow"></i></span>
+                    <label>KATILMA TARİHİ</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.DateOfJoin, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Katılma tarihini giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.DateOfJoin, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-circle-o text-green"></i></span>
+                    <label>AYRILMA TARİHİ</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.DateOfLeave, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Ayrılma tarihini seçiniz.</small>
+                    @Html.ValidationMessageFor(model => model.DateOfLeave, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker text-blue"></i></span>
+                    <label>ADRES</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci Adres'ini giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-id-badge text-purple"></i></span>
+                    <label>VELİ AD</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.ParentName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci'nin Veli adını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.ParentName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-mobile text-cyan"></i></span>
+                    <label>VELİ TELEFON 1</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.ParentPhone1, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci'nin Veli Telefon numarasını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.ParentPhone1, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-phone text-red"></i></span>
+                    <label>VELİ TELEFON 2</label>
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.ParentPhone2, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci'nin Veli yedek telefon numarasını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.ParentPhone2, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-intersex text-red"></i></span>
+                    <label>VELİ CİNSİYET</label>
+                    <div class="input-group">
+                        <table>
+                            <tr>
+                                <td>@Html.RadioButtonFor(model => model.ParentGender, true) <strong>Bay</strong></td>
+                                <td> &nbsp; &nbsp;&nbsp; </td>
+                                <td>@Html.RadioButtonFor(model => model.ParentGender, false) <strong>Bayan</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <small class="form-text text-muted">Veli'nin cinsiyetini seçiniz.</small>
+                    @Html.ValidationMessageFor(model => model.ParentGender, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-yellow"></i></span>
+                    <label>AÇIKLAMA</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Öğrenci için bir açıklama giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="form-prepend">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-plus-square-o">&nbsp;&nbsp; Yeni Kayıt Ekle</i>
+                </button>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    }
+</div>

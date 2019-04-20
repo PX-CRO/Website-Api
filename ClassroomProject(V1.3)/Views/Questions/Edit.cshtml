@@ -1,0 +1,145 @@
+﻿@model ClassroomProject_V1._3_.Models.Question
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8 ">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">SORU EKLEME SAYFASI</h1>
+            <p class="lead">Bu ekrandan soru eklebilirsiniz.</p>
+        </div>
+    </div>
+    <div class="row">
+        @Html.ActionLink("  Soru Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
+    </div>
+
+    @using (Html.BeginForm("Create", "Questions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.AntiForgeryToken()
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-question-circle text-blue"></i></span>
+                    <label>SORU</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.Question1, new { @class = "form-control", @style = "height: 150px" })
+                    </div>
+                    <small class="form-text text-muted">Bir soru yazınız.</small>
+                    @Html.ValidationMessageFor(model => model.Question1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>A</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.A, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun A şıkkını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.A, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>C</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.C, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun C şıkkını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.C, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>B</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.B, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun B şıkkını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.B, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>D</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.D, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun D şıkkını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.D, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>E</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.E, new { @class = "form-control", @style = "height: 100px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun E şıkkını giriniz.</small>
+                    @Html.ValidationMessageFor(model => model.E, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>CEVAP</label>
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.Answer, new { @class = "form-control" })
+
+                    </div>
+                    <small class="form-text text-muted">Sorunun DOĞRU şıkkını giriniz. Ör: X</small>
+                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-users text-yellow"></i></span>
+                    <label>DERS</label>
+                    <div class="input-group">
+                        @Html.DropDownList("LessonID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun hangi derse ait olduğunu seçiniz.</small>
+                    @Html.ValidationMessageFor(model => model.LessonID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <span class="input-group-addon"><i class="fa fa-align-justify text-blue"></i></span>
+                    <label>ÇÖZÜM</label>
+                    <div class="input-group">
+                        @Html.TextAreaFor(model => model.Solution, new { @class = "form-control", @style = "height: 200px" })
+                    </div>
+                    <small class="form-text text-muted">Sorunun çözümünü yazınız.</small>
+                    @Html.ValidationMessageFor(model => model.Solution, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-prepend">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-plus-square-o">&nbsp;&nbsp; Değişiklikleri Kaydet</i>
+                </button>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+    }
+</div>

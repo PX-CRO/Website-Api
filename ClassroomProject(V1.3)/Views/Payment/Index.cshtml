@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+        <div class="container">
+            <h1 class="display-4 text-white">ÖĞRENCİ ÖDEMELERİ LİSTESİ</h1>
+            <p class="lead text-white">Bu ekrandan öğrenci ödemelerini görüntüleyip, silme,ekleme ve güncelleme işlemlerini gerçekleştirebilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                @Html.ActionLink("  Yeni Ödeme Ekle", "Create", null, new { @class = "btn btn-info fa fa-plus" })
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tr>
+                        <th style="width:25%"><p>ÖĞRENCİ BİLGİLERİ</p></th>
+                        <th style="width:20%"><p>ÖDEYEN KİŞİ</p></th>
+                        <th style="width:15%"><p>TARİH</p></th>
+                        <th style="width:10%"><p>TUTAR (TL)</p></th>
+                        <th style="width:30%"></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Student.TCno
+                                &nbsp;&nbsp;&nbsp;
+                                @item.Student.FName
+                                @item.Student.LName
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayerNameSurname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                            <td>
+                                @Html.ActionLink("  Yazdır", "Print", new { id = item.Id }, new { @class = "btn btn-primary btn btn-primary fa fa-print" }) |
+                                @Html.ActionLink("  Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn btn-primary fa fa-pencil-square-o" }) |
+                                @Html.ActionLink("  Sil ve Detaylar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@model ClassroomProject_V1._3_.Models.ClassDTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
+            <div class="container">
+                <h1 class="display-4 text-white">SINIFLAR LİSTESİ</h1>
+                <p class="lead text-white">Bu ekrandan Sınıfların detaylarını görüntüleyip, silme,ekleme ve güncelleme işlemlerini gerçekleştirebilirsiniz.</p>
+            </div>
+        </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-hover table-striped table-responsive">
+                <tr style="font-weight:900;">
+                    <td>Sınıf Adı</td>
+                    <td>Açıklama</td>
+                    <td></td>
+                </tr>
+                @foreach (var item in Model.ClassList)
+                {
+                    <tr>
+                        <td style="width: 15%">@item.Name</td>
+                        <td style="width: 55%">@item.Description</td>
+                        <td style="width: 30%">
+                            @Html.ActionLink("  Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary fa fa-pencil-square-o" })
+
+                            @Html.ActionLink("  Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            @using (Html.BeginForm("Index", "Class"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Sınıf Ekleme ve Güncelleme işlemleri</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <span class="input-group-addon"><i class="fa fa-graduation-cap text-green"></i></span>
+                        <label>SINIF ADI</label>
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.ClassData.Name, new { htmlAttributes = new { @class = "form-control", } })
+                        </div>
+                        <small class="form-text text-muted">Sınıf adını giriniz. Örneğin; Matematik, Türkce, Biyoloji...</small>
+                        @Html.ValidationMessageFor(model => model.ClassData.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <span class="input-group-addon"><i class="fa fa-align-justify text-red"></i></span>
+                        <label>AÇIKLAMA</label>
+                        <div class="input-group">
+                            @Html.TextAreaFor(model => model.ClassData.Description, new { @class = "form-control", @style = "height: 100px" })
+                        </div>
+                        <small class="form-text text-muted">Bu sınıf için bir açıklama girebilirsiniz.</small>
+                        @Html.ValidationMessageFor(model => model.ClassData.Description, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.HiddenFor(model => model.ClassData.Id)
+
+                    <div class="form-group">
+                        <div class="form-prepend">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-check-square-o">&nbsp;&nbsp; Oluştur / Değiştir</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
