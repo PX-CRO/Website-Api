@@ -29,6 +29,7 @@ namespace ClassroomProject_V1._3_.Controllers
                 else
                 {
                     Session["UserID"] = management.Id;
+                    Session["UserEmail"] = management.Email;
                     return RedirectToAction("Index", "Home");
                 }
 

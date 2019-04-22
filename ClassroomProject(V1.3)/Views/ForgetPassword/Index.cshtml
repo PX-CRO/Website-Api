@@ -1,4 +1,4 @@
-﻿@model ClassroomProject_V1._3_.Models.Teacher
+﻿@model ClassroomProject_V1._3_.Models.ForgetPasswordClass
 @{
     Layout = null;
 }
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Creative Tim">
-    <title>Pexax || Öğretmen Girişi</title>
+    <title>Pexax || Şifremi Unuttum</title>
     <!-- Favicon -->
     <link href="~/Image/ss.png" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -48,11 +48,11 @@
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-header bg-transparent pb-2">
                             <div class="text-muted text-center mt-2 mb-3">
-                                <h2>Öğretmen Girişi</h2>
+                                <h2>Şifremi Unuttum</h2>
                             </div>
                         </div>
                         <div class="card-body px-lg-5 py-lg-5">
-                            @using (Html.BeginForm("Autherize", "TeacherLogin", FormMethod.Post))
+                            @using (Html.BeginForm("CheckIt", "ForgetPassword", FormMethod.Post))
                             {
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
@@ -60,43 +60,26 @@
                                             <span class="input-group-text"><i class="fa fa-envelope text-red"></i></span>
                                         </div>
                                         @*<input class="form-control" placeholder="E-Posta" type="email">*@
-                                        @Html.EditorFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control", @type = "email", placeholder = "E-Posta", autofocus = "autofocus" } })
+                                        @Html.EditorFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control", @type = "Lütfen E-Mail yazınız.", placeholder = "E-Posta", autofocus = "autofocus" } })
                                         @Html.ValidationMessageFor(model => model.eMail)
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-key text-green"></i></span>
-                                        </div>
-                                        @*<input class="form-control" placeholder="Şifre" type="password">*@
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", placeholder = "Şifre" } })
-                                        @Html.ValidationMessageFor(model => model.Password)
-                                    </div>
-                                </div>
-                                <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                                    <label class="custom-control-label" for=" customCheckLogin">
-                                        <span class="text-muted">Beni Hatırla !</span>
-                                    </label>
-                                </div>
 
                                 <div class="col-lg-6 login-btm login-text">
-                                    <label class="field-validation-error" style="color:red; width:300px;">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                                    <label class="field-validation-error" style="color:black; width:300px;">@Html.DisplayFor(model => model.Message)</label>
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary my-4 fa fa-sign-in">&nbsp;&nbsp; Giriş Yap</button>
+                                    <button type="submit" class="btn btn-primary my-4 fa fa-sign-in">&nbsp;&nbsp; Gönder</button>
                                 </div>
                             }
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-6">
-                            <a href="/ForgetPassword/Index" class="text-light"><small>Şifremi Unuttum?</small></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="/Default/Index" class="text-light"><small>Anasayfa'ya Dön</small></a>
+                        <div class="col" style="text-align:center;">
+                            <a href="/AdminLogin/Index" class="text-light"><small>Yönetici Girişi</small></a> ||
+                            <a href="/TeacherLogin/Index" class="text-light"><small>Öğretmen Girişi</small></a> ||
+                            <a href="/StudentLogin/Index" class="text-light"><small>Öğrenci Girişi</small></a>
                         </div>
                     </div>
                 </div>
@@ -134,4 +117,3 @@
     <script src="~/Scripts/argon.min.js"></script>
 </body>
 </html>
-

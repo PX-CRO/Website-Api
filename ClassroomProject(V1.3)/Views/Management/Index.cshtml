@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    if (!(Session["UserEmail"].ToString() == "admin@gmail.com"))
+    {
+        Response.Redirect("~/Home/Index");
+    }
 }
 
 <div class="container-fluid">
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8">
         <div class="container">
-            <h1 class="display-4">SİSTEM KULLANICILARI LİSTESİ</h1>
-            <p class="lead">Bu ekrandan sistemi kullanan kullanıcıların şifrelerini ve detaylarını görüntüleyip, silme,ekleme ve güncelleme işlemlerini gerçekleştirebilirsiniz.</p>
+            <h1 class="display-4 text-white">SİSTEM KULLANICILARI LİSTESİ</h1>
+            <p class="lead text-white">Bu ekrandan sistemi kullanan kullanıcıların şifrelerini ve detaylarını görüntüleyip, silme,ekleme ve güncelleme işlemlerini gerçekleştirebilirsiniz.</p>
         </div>
     </div>
     <hr />

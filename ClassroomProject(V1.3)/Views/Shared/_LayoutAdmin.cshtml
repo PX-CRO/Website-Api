@@ -169,11 +169,22 @@
                             <i class="fa fa-newspaper-o fa-fw text-purple"></i> Duyurular
                         </a>
                     </li>
+
+                    @if (Session["UserEmail"].ToString() == "admin@gmail.com")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Management/Index">
+                                <i class="fa fa-legal fa-fw text-red"></i> Yönetim
+                            </a>
+                        </li>
+                    }
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/Admin/AdminProfile">
+                        <a class="nav-link" href="/AdminProfile/Index">
                             <i class="fa fa-cogs fa-fw text-cyan"></i> Kullanıcı Profili
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("LogOut","AdminLogin")">
                             <i class="fa fa-sign-out fa-fw text-pink"></i> Çıkış

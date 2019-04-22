@@ -16,7 +16,7 @@
         @Html.ActionLink("  Soru Listesine Geri Dön", "Index", null, new { @class = "btn btn-warning fa fa-list" })
     </div>
 
-    @using (Html.BeginForm("Create", "Questions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Questions", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

@@ -104,10 +104,43 @@
     <Content Include="Content\Chosen\chosen.min.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\nucleo.css" />
+    <Content Include="Files\Content\bootstrap.min.css" />
+    <Content Include="Files\Content\owl.carousel.min.css" />
+    <Content Include="Files\Content\style.css" />
+    <Content Include="Files\Content\themify-icons.css" />
+    <Content Include="Files\fonts\themify.svg" />
+    <Content Include="Files\Images\appleicon.png" />
+    <Content Include="Files\Images\client-logos.png" />
+    <Content Include="Files\Images\client.png" />
+    <Content Include="Files\Images\dualphone.png" />
+    <Content Include="Files\Images\graphic.png" />
+    <Content Include="Files\Images\iphonex.png" />
+    <Content Include="Files\Images\logo.png" />
+    <Content Include="Files\Images\perspective.png" />
+    <Content Include="Files\Images\playicon.png" />
+    <Content Include="Files\Images\screen1.jpg" />
+    <Content Include="Files\Images\screen2.jpg" />
+    <Content Include="Files\Images\screen3.jpg" />
+    <Content Include="Files\Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Files\Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Files\Scripts\owl.carousel.min.js" />
+    <Content Include="Files\Scripts\script.js" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Image\indir.png" />
     <Content Include="Image\ss.png" />
+    <Content Include="Image\Static\appleicon.png" />
+    <Content Include="Image\Static\client-logos.png" />
+    <Content Include="Image\Static\client.png" />
+    <Content Include="Image\Static\dualphone.png" />
+    <Content Include="Image\Static\graphic.png" />
+    <Content Include="Image\Static\iphonex.png" />
+    <Content Include="Image\Static\logo.png" />
+    <Content Include="Image\Static\perspective.png" />
+    <Content Include="Image\Static\playicon.png" />
+    <Content Include="Image\Static\screen1.jpg" />
+    <Content Include="Image\Static\screen2.jpg" />
+    <Content Include="Image\Static\screen3.jpg" />
     <Content Include="Image\Students\Halid.jpg" />
     <Content Include="Image\Students\Halil.png" />
     <Content Include="Image\Students\Hasan.jpg" />
@@ -142,9 +175,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\AdminProfileController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DiscontinuityController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -185,6 +221,7 @@
     <Compile Include="Models\Discontinuity.cs">
       <DependentUpon>ClassroomContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ForgetPasswordClass.cs" />
     <Compile Include="Models\Grade.cs">
       <DependentUpon>ClassroomContext.tt</DependentUpon>
     </Compile>
@@ -220,6 +257,9 @@
     <Content Include="Models\ClassroomContext.edmx.diagram">
       <DependentUpon>ClassroomContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Files\fonts\themify.eot" />
+    <Content Include="Files\fonts\themify.ttf" />
+    <Content Include="Files\fonts\themify.woff" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
@@ -267,6 +307,9 @@
     <Content Include="Views\Questions\Delete.cshtml" />
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\AdminProfile\Index.cshtml" />
+    <Content Include="Views\ForgetPassword\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

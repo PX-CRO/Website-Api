@@ -7,213 +7,219 @@
 
 <div class="container-fluid">
 
-    <div class="row">
-        <br />
-        <div class="panel panel-info">
-            <div class="panel-heading">Öğrenci Bilgileri</div>
-            <div class="panel-body">
-                <div class="col-md-3">
-                    <dl class="">
-                        <dd>
-                            <img src="@Url.Content(Model.Photo)" class="img-circle" alt="Image" height="300" width="300" />
-                        </dd>
-                    </dl>
-                </div>
-                <div class="col-md-1"></div>
-
-                <div class="col-md-4">
-                    <dl class="d-lg-table">
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-font">&nbsp;&nbsp;AD</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.FName)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-strikethrough">&nbsp;&nbsp;SOYAD </i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.LName)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-id-card-o">&nbsp;&nbsp;TC NO</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.TCno)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-intersex">&nbsp;&nbsp;CİNSİYET</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-
-                            @if (Model.Gender == true)
-                            {
-                                <text>Bay</text>
-                            }
-                            else
-                            {
-                                <text>Bayan</text>
-                            }
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-calendar">&nbsp;&nbsp;DOĞUM TARİHİ</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Birthday)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-phone">&nbsp;&nbsp;TELEFON</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Phone)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-toggle-on">&nbsp;&nbsp;zDURUM</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @if (Model.Status == true)
-                            {
-                                <text>Aktif</text>
-                            }
-                            else
-                            {
-                                <text>Pasif</text>
-                            }
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-graduation-cap">&nbsp;&nbsp;ALAN</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Type)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-users">&nbsp;&nbsp;SINIF</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Class.Name)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-indent">&nbsp;&nbsp;GRUP</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Group.Name)
-                        </dd>
-                    </dl>
-                </div>
-
-                <div class="col-md-4">
-                    <dl class="d-lg-table">
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-envelope">&nbsp;&nbsp;E-POSTA</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.eMail)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-key">&nbsp;&nbsp;ŞİFRE</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Password)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-check-circle-o">&nbsp;&nbsp;KATILMA TARİHİ</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.DateOfJoin)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-circle-o">&nbsp;&nbsp;AYRILMA TARİHİ</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.DateOfLeave)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-map-marker">&nbsp;&nbsp;ADRES</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Address)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-id-badge">&nbsp;&nbsp;VELİ İSMİ</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.ParentName)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-mobile">&nbsp;&nbsp;VELİ TELEFON 1</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.ParentPhone1)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-phone">&nbsp;&nbsp;VELİ TELEFON 2</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.ParentPhone2)
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-intersex">&nbsp;&nbsp;VELİ CİNSİYET</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @if (Model.ParentGender == true)
-                            {
-                                <text>Bay</text>
-                            }
-                            else
-                            {
-                                <text>Bayan</text>
-                            }
-                        </dd>
-
-                        <dt>
-                            <span class="label label-primary"><i class="fa fa-align-justify">&nbsp;&nbsp;AÇIKLAMA</i></span>
-                        </dt>
-
-                        <dd style="font-size:medium">
-                            @Html.DisplayFor(model => model.Description)
-                        </dd>
-
-                    </dl>
-                </div>
-
-            </div>
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8 ">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">ÖĞRENCİ DETAYLI BİLGİ</h1>
+            <p class="lead">Bu ekrandan öğrenci detaylarını görebilirsiniz.</p>
+            <p class="lead text-white">@Html.Label(Session["UserInf"].ToString())</p>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <dl class="d-lg-table">
+                <dd>
+                    <img src="@Url.Content(Model.Photo)" class="img-circle" alt="Image" height="300" width="300" />
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col">
+            <dl class="d-lg-table">
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-font">&nbsp;&nbsp;AD</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.FName)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-strikethrough">&nbsp;&nbsp;SOYAD </i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.LName)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-id-card-o">&nbsp;&nbsp;TC NO</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.TCno)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-intersex">&nbsp;&nbsp;CİNSİYET</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+
+                    @if (Model.Gender == true)
+                    {
+                        <text>Bay</text>
+                    }
+                    else
+                    {
+                        <text>Bayan</text>
+                    }
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-calendar">&nbsp;&nbsp;DOĞUM TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Birthday)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-phone">&nbsp;&nbsp;TELEFON</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-toggle-on">&nbsp;&nbsp;DURUM</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @if (Model.Status == true)
+                    {
+                        <text>Aktif</text>
+                    }
+                    else
+                    {
+                        <text>Pasif</text>
+                    }
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-graduation-cap">&nbsp;&nbsp;ALAN</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-users">&nbsp;&nbsp;SINIF</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Class.Name)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-indent">&nbsp;&nbsp;GRUP</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Group.Name)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col">
+            <dl class="d-lg-table">
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-envelope">&nbsp;&nbsp;E-POSTA</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.eMail)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-key">&nbsp;&nbsp;ŞİFRE</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Password)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-check-circle-o">&nbsp;&nbsp;KATILMA TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.DateOfJoin)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-circle-o">&nbsp;&nbsp;AYRILMA TARİHİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.DateOfLeave)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-map-marker">&nbsp;&nbsp;ADRES</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-id-badge">&nbsp;&nbsp;VELİ İSMİ</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.ParentName)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-mobile">&nbsp;&nbsp;VELİ TELEFON 1</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.ParentPhone1)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-phone">&nbsp;&nbsp;VELİ TELEFON 2</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.ParentPhone2)
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-intersex">&nbsp;&nbsp;VELİ CİNSİYET</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @if (Model.ParentGender == true)
+                    {
+                        <text>Bay</text>
+                    }
+                    else
+                    {
+                        <text>Bayan</text>
+                    }
+                </dd>
+
+                <dt>
+                    <span class="badge badge-pill badge-primary"><i class="fa fa-align-justify">&nbsp;&nbsp;AÇIKLAMA</i></span>
+                </dt>
+
+                <dd style="font-size:medium">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+            </dl>
+        </div>
+
     </div>
 </div>
