@@ -17,7 +17,7 @@ namespace ClassroomProject_V1._3_.Controllers
         // GET: Payment
         public ActionResult Index()
         {
-            var payments = db.Payments.Include(p => p.Student);
+            var payments = db.Payments.Include(p => p.Student).Take(50);
             return View(payments.ToList());
         }
 

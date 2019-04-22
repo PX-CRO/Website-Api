@@ -16,7 +16,7 @@ namespace ClassroomProject_V1._3_.Controllers
         {
             var AnnouncementData = new AnnouncementDTO()
             {
-                AnnouncementList = db.Announcements.ToList()
+                AnnouncementList = db.Announcements.OrderByDescending(x => x.Date).Take(50).ToList()
             };
             return View(AnnouncementData);
         }

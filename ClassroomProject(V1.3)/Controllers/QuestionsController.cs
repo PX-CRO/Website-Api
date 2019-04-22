@@ -17,7 +17,7 @@ namespace ClassroomProject_V1._3_.Controllers
         // GET: Questions
         public ActionResult Index(string searching)
         {
-            var Quest = db.Questions.Where(x => x.Question1.Contains(searching) || searching == null).ToList();
+            var Quest = db.Questions.Where(x => x.Question1.Contains(searching) || searching == null).Take(20).ToList();
             return View(Quest);
         }
 

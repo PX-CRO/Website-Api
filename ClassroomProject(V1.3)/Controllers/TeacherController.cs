@@ -18,7 +18,7 @@ namespace ClassroomProject_V1._3_.Controllers
         // GET: Teacher
         public ActionResult Index(string searching)
         {
-            var teachers = db.Teachers.Where(x => x.FName.Contains(searching) || searching == null || x.TCno.Contains(searching) || x.LName.Contains(searching)).ToList();
+            var teachers = db.Teachers.Where(x => x.FName.Contains(searching) || searching == null || x.TCno.Contains(searching) || x.LName.Contains(searching)).Take(50).ToList();
             return View(teachers);
         }
 

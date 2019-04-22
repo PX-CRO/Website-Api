@@ -17,7 +17,7 @@ namespace ClassroomProject_V1._3_.Controllers
         // GET: Discontinuity
         public ActionResult Index()
         {
-            var discontinuities = db.Discontinuities.Include(d => d.Student);
+            var discontinuities = db.Discontinuities.Include(d => d.Student).OrderByDescending(x => x.Date).Take(50);
             return View(discontinuities.ToList());
         }
 

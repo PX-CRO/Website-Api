@@ -17,7 +17,7 @@ namespace ClassroomProject_V1._3_.Controllers
         // GET: Grade
         public ActionResult Index()
         {
-            var grades = db.Grades.Include(g => g.Student);
+            var grades = db.Grades.Include(g => g.Student).Take(50);
             return View(grades.ToList());
         }
 

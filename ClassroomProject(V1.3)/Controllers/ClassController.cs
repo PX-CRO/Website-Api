@@ -16,7 +16,7 @@ namespace ClassroomProject_V1._3_.Controllers
         {
             var ClassData = new ClassDTO()
             {
-                ClassList = db.Classes.ToList()
+                ClassList = db.Classes.Take(50).ToList()
             };
             return View(ClassData);
         }

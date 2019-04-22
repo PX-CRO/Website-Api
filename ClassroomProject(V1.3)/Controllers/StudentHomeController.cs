@@ -38,7 +38,7 @@ namespace ClassroomProject_V1._3_.Controllers
             {
                 int id = Convert.ToInt32(Session["StudentUserID"].ToString());
 
-                var Discon = db.Discontinuities.Where(x => x.Student_Id == id).OrderByDescending(x => x.Date).ToList();
+                var Discon = db.Discontinuities.Where(x => x.Student_Id == id).OrderByDescending(x => x.Date).Take(50).ToList();
                 if (Discon == null)
                 {
                     return HttpNotFound();
@@ -57,7 +57,7 @@ namespace ClassroomProject_V1._3_.Controllers
             {
                 int id = Convert.ToInt32(Session["StudentUserID"].ToString());
 
-                var Grade = db.Grades.Where(x => x.Student_Id == id).ToList();
+                var Grade = db.Grades.Where(x => x.Student_Id == id).Take(50).ToList();
                 if (Grade == null)
                 {
                     return HttpNotFound();
@@ -76,7 +76,7 @@ namespace ClassroomProject_V1._3_.Controllers
             {
                 int id = Convert.ToInt32(Session["StudentUserID"].ToString());
 
-                var Paym = db.Payments.Where(x => x.Student_Id == id).OrderByDescending(x => x.Date).ToList();
+                var Paym = db.Payments.Where(x => x.Student_Id == id).OrderByDescending(x => x.Date).Take(50).ToList();
                 if (Paym == null)
                 {
                     return HttpNotFound();

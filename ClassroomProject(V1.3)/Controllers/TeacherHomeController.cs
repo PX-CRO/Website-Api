@@ -18,7 +18,7 @@ namespace ClassroomProject_V1._3_.Controllers
 
         public ActionResult Students(string searching)
         {
-            var students = db.Students.Where(x => x.FName.Contains(searching) || searching == null || x.TCno.Contains(searching) || x.LName.Contains(searching)).ToList();
+            var students = db.Students.Where(x => x.FName.Contains(searching) || searching == null || x.TCno.Contains(searching) || x.LName.Contains(searching)).Take(50).ToList();
             return View(students);
         }
 
