@@ -227,5 +227,16 @@
         </div>
 
     </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col">
+            @Html.ActionLink("  Devamsızlık Bilgisi", "GetAllDiscontinuity", new { id = Model.Id }, new { @class = "btn btn-info btn btn-danger fa fa-braille" }) ||
+            @Html.ActionLink("  Notlar Bilgisi", "GradeInformation", new { id = Model.Id }, new { @class = "btn btn-primary btn btn-success fa fa-pencil-square-o" }) ||
+            @Html.ActionLink("  Ödeme Bilgisi", "PaymentInformation", new { id = Model.Id }, new { @class = "btn btn-primary btn btn-info fa fa-try" })
+        </div>
+    </div>
+    <hr />
+
 </div>
 

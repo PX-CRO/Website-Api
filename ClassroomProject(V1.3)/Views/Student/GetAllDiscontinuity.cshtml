@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ClassroomProject_V1._3_.Models.Discontinuity>
+
+
+
+@{
+    ViewBag.Title = "GetAllDiscontinuity";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid bg-gradient-primary pb-4 pt-5 pt-md-8 ">
+        <div class="container text-white">
+            <h1 class="display-4 text-white">ÖĞRENCİ DETAYLI DEVAMSIZLI BİLGİSİ</h1>
+            <p class="lead">Bu ekrandan öğrenci devamsızlık detaylarını görebilir ve yazdırabilirsiniz.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            @Html.ActionLink("   Öğrenci Detayına Geri Dön", "Details", new { id = Model.FirstOrDefault().Student_Id }, new { @class = "btn btn-warning fa fa-list" })
+            @Html.ActionLink("   Öğrenci Devamsızlıklarını Yazdır", "PrintDiscontinuity", new {idd = Model.FirstOrDefault().Student_Id }, new { @class = "btn btn-warning fa fa-list" })
+            
+        </div>
+
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student.Type)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Student.Type)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+

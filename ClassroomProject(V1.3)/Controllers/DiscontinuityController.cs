@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ClassroomProject_V1._3_.Models;
@@ -113,6 +115,45 @@ namespace ClassroomProject_V1._3_.Controllers
             db.Discontinuities.Remove(discontinuity);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Discontinuity/SendMail/5
+        public async Task<ActionResult> SendMail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Discontinuity discontinuity = db.Discontinuities.Find(id);
+            if (discontinuity == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    var body = "<h3>Sevgili {0},</h3><h4>{1} tarihinde devamsızlık yapmıştır.</h4><p>Açıklama:</p><p>{2}</p><p>{3}</p>";
+                    var message = new MailMessage();
+                    message.From = new MailAddress("pexaks@outlook.com");
+                    message.Subject = "Pexax Eğitim Merkezi || Öğrenci Devamsızlık Bilgisi";
+                    message.To.Add(new MailAddress(discontinuity.Student.eMail));
+                    message.Body = string.Format(body, discontinuity.Student.ParentName , discontinuity.Date, discontinuity.Description, "İyi Günler || Pexax Yönetim Merkezi");
+                    message.IsBodyHtml = true;
+
+                    using (var smtp = new SmtpClient())
+                    {
+                        smtp.Credentials = new NetworkCredential("eposta@gmail.com ", "şifre");
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        await smtp.SendMailAsync(message);
+                        return RedirectToAction("Index");
+                    }
+                }
+                TempData["msg"] = "<script>alert('E-Posta başarı ile Velisine gönderildi. ');</script>";
+                return View("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

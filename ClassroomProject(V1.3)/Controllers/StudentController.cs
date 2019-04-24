@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClassroomProject_V1._3_.Models;
+using Rotativa;
 
 namespace ClassroomProject_V1._3_.Controllers
 {
@@ -173,6 +174,40 @@ namespace ClassroomProject_V1._3_.Controllers
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetAllDiscontinuity(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var AllDiscontinuities = db.Discontinuities.Where(x => x.Student_Id == id).OrderByDescending(x => x.Date).ToList();
+            if (AllDiscontinuities == null)
+            {
+                return HttpNotFound();
+            }
+            return View(AllDiscontinuities);
+        }
+
+        public ActionResult PrintDiscontinuity(int? idd)
+        {
+            var cookies = Request.Cookies.AllKeys.ToDictionary(k => k, k => Request.Cookies[k].Value);
+            return new ActionAsPdf("GetAllDiscontinuity", new { id = idd })
+            {
+                FormsAuthenticationCookieName = System.Web.Security.FormsAuthentication.FormsCookieName,
+                Cookies = cookies
+            };
+        }
+
+        public ActionResult GradeInformation(int? id)
+        {
+            return View();
+        }
+
+        public ActionResult PaymentInformation(int? id)
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

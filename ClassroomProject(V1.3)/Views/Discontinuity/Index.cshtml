@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Html.Raw(TempData["msg"]);
 }
 
 <div class="container-fluid">
@@ -47,7 +48,7 @@
                                 @Html.DisplayFor(modelItem => item.Description)
                             </td>
                             <td>
-                                @Html.ActionLink("  GÖNDER", "SendMail", new { id = item.Id }, new { @class = "btn btn-primary btn btn-primary fa fa-envelope" }) |
+                                @Html.ActionLink("  E-Posta Gönder", "SendMail", new { id = item.Id }, new { @class = "btn btn-primary btn btn-primary fa fa-envelope" }) |
                                 @Html.ActionLink("  Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn btn-primary fa fa-pencil-square-o" }) |
                                 @Html.ActionLink("  Sil ve Detaylar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
                             </td>

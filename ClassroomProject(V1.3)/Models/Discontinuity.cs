@@ -11,7 +11,8 @@ namespace ClassroomProject_V1._3_.Models
 {
     using System;
     using System.Collections.Generic;
-    
+   
+
     public partial class Discontinuity
     {
         public int Id { get; set; }
