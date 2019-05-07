@@ -14,7 +14,7 @@ namespace CPWebAPI.Controllers
 {
     public class QuestionsController : ApiController
     {
-        private MyContext db = new MyContext();
+        private DBClassroomEntities1 db = new DBClassroomEntities1();
 
         // GET: api/Questions
         public IQueryable<Questions> GetQuestions()

@@ -14,12 +14,12 @@ namespace CPWebAPI.Controllers
 {
     public class StudentsController : ApiController
     {
-        private MyContext db = new MyContext();
+        private DBClassroomEntities1 db = new DBClassroomEntities1();
 
         // GET: api/Students
         public IQueryable<Student> GetStudent()
         {
-            return db.Student;
+            return db.Student.Include("Grade");
         }
 
         // GET: api/Students/5

@@ -8,48 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using CPWebAPI.Models;
+using WebAPI.Models;
 
-namespace CPWebAPI.Controllers
+namespace WebAPI.Controllers
 {
-    public class LessonsController : ApiController
+    public class ClassesController : ApiController
     {
-        private MyContext db = new MyContext();
+        private DBClassroomEntities db = new DBClassroomEntities();
 
-        // GET: api/Lessons
-        public IQueryable<Lesson> GetLesson()
+        // GET: api/Classes
+        public IQueryable<Class> GetClass()
         {
-            return db.Lesson;
+            return db.Class;
         }
 
-        // GET: api/Lessons/5
-        [ResponseType(typeof(Lesson))]
-        public IHttpActionResult GetLesson(int id)
+        // GET: api/Classes/5
+        [ResponseType(typeof(Class))]
+        public IHttpActionResult GetClass(int id)
         {
-            Lesson lesson = db.Lesson.Find(id);
-            if (lesson == null)
+            Class @class = db.Class.Find(id);
+            if (@class == null)
             {
                 return NotFound();
             }
 
-            return Ok(lesson);
+            return Ok(@class);
         }
 
-        // PUT: api/Lessons/5
+        // PUT: api/Classes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLesson(int id, Lesson lesson)
+        public IHttpActionResult PutClass(int id, Class @class)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != lesson.Id)
+            if (id != @class.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(lesson).State = EntityState.Modified;
+            db.Entry(@class).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace CPWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LessonExists(id))
+                if (!ClassExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace CPWebAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Lessons
-        [ResponseType(typeof(Lesson))]
-        public IHttpActionResult PostLesson(Lesson lesson)
+        // POST: api/Classes
+        [ResponseType(typeof(Class))]
+        public IHttpActionResult PostClass(Class @class)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Lesson.Add(lesson);
+            db.Class.Add(@class);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = lesson.Id }, lesson);
+            return CreatedAtRoute("DefaultApi", new { id = @class.Id }, @class);
         }
 
-        // DELETE: api/Lessons/5
-        [ResponseType(typeof(Lesson))]
-        public IHttpActionResult DeleteLesson(int id)
+        // DELETE: api/Classes/5
+        [ResponseType(typeof(Class))]
+        public IHttpActionResult DeleteClass(int id)
         {
-            Lesson lesson = db.Lesson.Find(id);
-            if (lesson == null)
+            Class @class = db.Class.Find(id);
+            if (@class == null)
             {
                 return NotFound();
             }
 
-            db.Lesson.Remove(lesson);
+            db.Class.Remove(@class);
             db.SaveChanges();
 
-            return Ok(lesson);
+            return Ok(@class);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace CPWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool LessonExists(int id)
+        private bool ClassExists(int id)
         {
-            return db.Lesson.Count(e => e.Id == id) > 0;
+            return db.Class.Count(e => e.Id == id) > 0;
         }
     }
 }

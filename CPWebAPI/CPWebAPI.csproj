@@ -89,6 +89,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\MyDBContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDBContext.edmx</DependentUpon>
+      <LastGenOutput>MyDBContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MyDBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDBContext.edmx</DependentUpon>
+      <LastGenOutput>MyDBContext.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +108,6 @@
     <Compile Include="Controllers\DiscontinuitiesController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
-    <Compile Include="Controllers\LessonsController.cs" />
-    <Compile Include="Controllers\ManagementsController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -107,21 +115,61 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Announcement.cs" />
-    <Compile Include="Models\Class.cs" />
-    <Compile Include="Models\Discontinuity.cs" />
-    <Compile Include="Models\Grade.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\Lesson.cs" />
-    <Compile Include="Models\Management.cs" />
-    <Compile Include="Models\MyContext.cs" />
-    <Compile Include="Models\Payment.cs" />
-    <Compile Include="Models\Questions.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\Announcement.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Discontinuity.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grade.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Management.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyDBContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyDBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyDBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Questions.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>MyDBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\MyDBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyDBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MyDBContext.edmx.diagram">
+      <DependentUpon>MyDBContext.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

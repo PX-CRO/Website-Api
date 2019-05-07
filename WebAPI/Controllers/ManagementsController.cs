@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using CPWebAPI.Models;
+using WebAPI.Models;
 
-namespace CPWebAPI.Controllers
+namespace WebAPI.Controllers
 {
     public class ManagementsController : ApiController
     {
-        private MyContext db = new MyContext();
+        private DBClassroomEntities db = new DBClassroomEntities();
 
         // GET: api/Managements
         public IQueryable<Management> GetManagement()

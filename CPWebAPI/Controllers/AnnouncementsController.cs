@@ -14,7 +14,7 @@ namespace CPWebAPI.Controllers
 {
     public class AnnouncementsController : ApiController
     {
-        private MyContext db = new MyContext();
+        private DBClassroomEntities1 db = new DBClassroomEntities1();
 
         // GET: api/Announcements
         public IQueryable<Announcement> GetAnnouncement()
